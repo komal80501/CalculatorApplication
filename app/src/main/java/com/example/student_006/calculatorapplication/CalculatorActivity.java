@@ -1,5 +1,7 @@
 package com.example.student_006.calculatorapplication;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -146,6 +148,26 @@ public class CalculatorActivity extends AppCompatActivity {
         for (int id : numericButtons) {
             findViewById(id).setOnClickListener(listener);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Exit");
+        builder.setMessage("Do you want to exit!!! ");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                CalculatorActivity.super.onBackPressed();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+
     }
 }
 
